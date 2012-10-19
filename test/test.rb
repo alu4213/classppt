@@ -1,30 +1,25 @@
-#  sin título.rb
-#  
-#  Copyright 2012 eliezer <eliezer@ELIEZER>
-#  
-#  This program is free software; you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation; either version 2 of the License, or
-#  (at your option) any later version.
-#  
-#  This program is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#  
-#  You should have received a copy of the GNU General Public License
-#  along with this program; if not, write to the Free Software
-#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-#  MA 02110-1301, USA.
-#  
-#  
+require "ppt.rb"
+require "test/unit"
 
-
-class StdClass
-	def initialize
-		
-	end
-end
-
-x = StdClass.new
+def play
+    loop do
+      h = humanPlay
+      c = computerPlay
+      print "H: #{h}, C: #{c} => "
+ 
+      # only update the human player's history after the computer has chosen
+      @plays[h] += 1
+ 
+      if h == c
+        puts "draw"
+      elsif h == @beats[c]
+        puts "Human wins"
+        @score[0] += 1
+      else
+        puts "Computer wins"
+        @score[1] += 1
+      end
+      puts "score: human=#{@score[0]}, computer=#{@score[1]}"
+    end
+  end
 
